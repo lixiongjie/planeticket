@@ -24,7 +24,7 @@ public class CustomerController {
     Bd_customerServiceImpl bd_customerService;
 
 
-    @GetMapping(value = "/queryuser")
+    @GetMapping(value = "/users")
     public Result<Object> query(@RequestParam(name = "username", required = false, defaultValue = "tom") String username) {
 
 
@@ -37,7 +37,7 @@ public class CustomerController {
 
 
 
-    @GetMapping(value = "/saveuser")
+    @PutMapping(value = "/user")
     public Result<Object> saveuser() {
 
 
@@ -57,22 +57,22 @@ public class CustomerController {
     }
 
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/user/{id}")
     public Result<Object> testPathVariable(@PathVariable("id") Integer id) {
         return RetResponse.makeOKRsp(id);
     }
 
-
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public Result<Object> list(@RequestParam(name = "username", required = false, defaultValue = "tom") String username) {
-
-
-        Result r = salaryFeignClient.findById(Long.valueOf("1"));
-
-        return RetResponse.makeOKRsp(r);
-
-
-    }
+//
+//    @RequestMapping(value = "/querylist", method = RequestMethod.GET)
+//    public Result<Object> list(@RequestParam(name = "username", required = false, defaultValue = "tom") String username) {
+//
+//
+//        Result r = salaryFeignClient.findById(Long.valueOf("1"));
+//
+//        return RetResponse.makeOKRsp(r);
+//
+//
+//    }
 
 
 }
