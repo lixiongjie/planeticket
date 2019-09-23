@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
 import java.util.Scanner;
 
@@ -51,10 +52,40 @@ public class CodeGenerator {
         dsc.setPassword("qaz00WSX@");
         mpg.setDataSource(dsc);
 
+
+        StrategyConfig strategy = new StrategyConfig();
+        // strategy.setCapitalMode(true);// 全局大写命名 ORACLE 注意
+        //strategy.setTablePrefix(new String[] { "user_" });// 此处可以修改为您的表前缀
+        strategy.setNaming(NamingStrategy.no_change);// 表名生成策略
+
+        strategy.setInclude(new String[] { "bd_customer" }); // 需要生成的表
+        // strategy.setExclude(new String[]{"test"}); // 排除生成的表
+        // 自定义实体父类
+        // strategy.setSuperEntityClass("com.baomidou.demo.TestEntity");
+        // 自定义实体，公共字段
+        // strategy.setSuperEntityColumns(new String[] { "test_id", "age" });
+        // 自定义 mapper 父类
+        // strategy.setSuperMapperClass("com.baomidou.demo.TestMapper");
+        // 自定义 service 父类
+        // strategy.setSuperServiceClass("com.baomidou.demo.TestService");
+        // 自定义 service 实现类父类
+        // strategy.setSuperServiceImplClass("com.baomidou.demo.TestServiceImpl");
+        // 自定义 controller 父类
+        // strategy.setSuperControllerClass("com.baomidou.demo.TestController");
+        // 【实体】是否生成字段常量（默认 false）
+        // public static final String ID = "test_id";
+        // strategy.setEntityColumnConstant(true);
+        // 【实体】是否为构建者模型（默认 false）
+        // public User setName(String name) {this.name = name; return this;}
+        // strategy.setEntityBuilderModel(true);
+        mpg.setStrategy(strategy);
+
+
+
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName(scanner("模块名"));
-        pc.setParent("com.baomidou.ant");
+        //pc.setModuleName(scanner("模块名"));
+        pc.setParent("cus");
         mpg.setPackageInfo(pc);
 
         mpg.execute();

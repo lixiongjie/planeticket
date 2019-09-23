@@ -12,6 +12,12 @@ spring:
     url: jdbc:mysql://10.211.55.6:3306/hrms_emp?useUnicode=true&characterEncoding=utf8
     username: root
     password: qaz00WSX@
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 
+mybatis-plus:
+  mapper-locations: classpath:cus/mapper/xml/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  type-aliases-package: cus.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

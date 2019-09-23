@@ -1,7 +1,10 @@
 package cus.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import comm.ret.Result;
 import comm.ret.RetResponse;
+import cus.entity.Bd_customer;
+import cus.service.Bd_customerServiceImpl;
 import order.feign.OrderFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,31 +20,47 @@ public class CustomerController {
     private OrderFeignClient salaryFeignClient;
 
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    @Autowired
+    Bd_customerServiceImpl bd_customerService;
+
+
+    @GetMapping(value = "/queryuser")
     public Result<Object> query(@RequestParam(name = "username", required = false, defaultValue = "tom") String username) {
 
-        System.out.println(username);
-        List users = new ArrayList<>();
-        users.add(new HashMap<String, String>() {{
-            put("name", "aaa");
-        }});
-        users.add(new HashMap<String, String>() {{
-            put("name", "bbb");
-        }});
-        users.add(new HashMap<String, String>() {{
-            put("name", "ccc");
-        }});
-        return RetResponse.makeOKRsp(users);
+
+        List list = bd_customerService.list(new QueryWrapper<Bd_customer>().eq("id", 2));
+
+        return RetResponse.makeOKRsp(list);
+
+
     }
 
+
+
+    @GetMapping(value = "/saveuser")
+    public Result<Object> saveuser() {
+
+
+        boolean b = bd_customerService.save(new Bd_customer().setEmpcode("ll215817"));
+
+        if (b){
+            return RetResponse.makeOKRsp();
+        }else{
+            return RetResponse.makeErrRsp("");
+        }
+
+
+
+
+
+
+    }
 
 
     @GetMapping("/users/{id}")
     public Result<Object> testPathVariable(@PathVariable("id") Integer id) {
         return RetResponse.makeOKRsp(id);
     }
-
-
 
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -54,8 +73,6 @@ public class CustomerController {
 
 
     }
-
-
 
 
 }
