@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+
+
+logging:
+  level:
+    me.x.salary.feign.SalaryFeignClient: debug
+
+spring:
+  datasource:
+    url: jdbc:mysql://10.211.55.6:3306/hrms_emp?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: qaz00WSX@
+    driver-class-name: com.mysql.jdbc.Driver
+
+
