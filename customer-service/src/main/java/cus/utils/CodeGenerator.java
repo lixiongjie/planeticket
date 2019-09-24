@@ -45,20 +45,22 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://10.211.55.6:3306/hrms_emp?useUnicode=true&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://127.0.0.1:8066/TESTDB?useUnicode=true&characterEncoding=utf8");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("qaz00WSX@");
+        dsc.setPassword("123456");
         mpg.setDataSource(dsc);
 
 
         StrategyConfig strategy = new StrategyConfig();
         // strategy.setCapitalMode(true);// 全局大写命名 ORACLE 注意
         //strategy.setTablePrefix(new String[] { "user_" });// 此处可以修改为您的表前缀
-        strategy.setNaming(NamingStrategy.no_change);// 表名生成策略
+//        strategy.setNaming(NamingStrategy.no_change);// 表名生成策略
+        strategy.setNaming(NamingStrategy.underline_to_camel);
+        strategy.setColumnNaming(NamingStrategy.underline_to_camel);
 
-        strategy.setInclude(new String[] { "bd_customer" }); // 需要生成的表
+        strategy.setInclude(new String[] { "sys_dict" }); // 需要生成的表
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 自定义实体父类
         // strategy.setSuperEntityClass("com.baomidou.demo.TestEntity");

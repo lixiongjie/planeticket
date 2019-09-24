@@ -4,6 +4,23 @@
 
 
 
+#### 19/09/24
+
+bd_customer做了水平拆分，关联表需要拆分吗？子表数据可能比主表还多
+
+> 启动mycat
+
+./mycat start
+
+> 查看日志
+
+cd ../logs
+
+tail -f wrapper.log 
+
+tail -f mycat.log
+
+
 #### 19/09/22
 不同模块相互调用
 

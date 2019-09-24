@@ -4,13 +4,13 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import comm.ret.Result;
 import comm.ret.RetResponse;
 import cus.entity.Bd_customer;
+import cus.entity.SysDict;
 import cus.service.Bd_customerServiceImpl;
+import cus.service.SysDictServiceImpl;
 import order.feign.OrderFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -24,11 +24,15 @@ public class CustomerController {
     Bd_customerServiceImpl bd_customerService;
 
 
+    @Autowired
+    SysDictServiceImpl sys_dictService;
+
+
     @GetMapping(value = "/users")
     public Result<Object> query(@RequestParam(name = "username", required = false, defaultValue = "tom") String username) {
 
 
-        List list = bd_customerService.list(new QueryWrapper<Bd_customer>().eq("id", 2));
+        List list = bd_customerService.list(new QueryWrapper<Bd_customer>());
 
         return RetResponse.makeOKRsp(list);
 
@@ -73,6 +77,31 @@ public class CustomerController {
 //
 //
 //    }
+
+
+
+    @GetMapping(value = "/sysdict")
+    public Result<Object> list() {
+
+
+        List l = sys_dictService.list(new QueryWrapper<SysDict>());
+        return RetResponse.makeOKRsp(l);
+
+
+    }
+
+
+
+    @PutMapping(value = "/sysdict")
+    public Result<Object> putsysdict(@RequestBody Bd_customer customer) {
+
+
+        return RetResponse.makeOKRsp(bd_customerService.save(customer));
+
+
+    }
+
+
 
 
 }
