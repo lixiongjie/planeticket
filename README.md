@@ -5,6 +5,13 @@
 
 
 
+#### 19/09/29
+
+> [SpringBoot 使用@RequestBody 接受不到参数的问题](https://blog.csdn.net/weixin_37603867/article/details/81298440)
+
+> [Spring Boot 参数校验](https://www.cnblogs.com/cjsblog/p/8946768.html)
+
+> [bean validation 分组验证及分组顺序](https://blog.csdn.net/win7system/article/details/51241837)
 
 #### 19/09/28
 
