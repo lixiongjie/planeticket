@@ -3,8 +3,10 @@ package cus.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import comm.ret.Result;
 import comm.ret.RetResponse;
+import cus.entity.BdCustomerEducation;
 import cus.entity.Bd_customer;
 import cus.entity.SysDict;
+import cus.service.BdCustomerEducationServiceImpl;
 import cus.service.Bd_customerServiceImpl;
 import cus.service.SysDictServiceImpl;
 import cus.vo.CustomerVO;
@@ -33,6 +35,10 @@ public class CustomerController {
     SysDictServiceImpl sys_dictService;
 
 
+    @Autowired
+    BdCustomerEducationServiceImpl educationService;
+
+
     @GetMapping(value = "/users")
     public Result<Object> query(@RequestParam(name = "username", required = false, defaultValue = "tom") String username) {
 
@@ -48,8 +54,10 @@ public class CustomerController {
     @PutMapping(value = "/user")
     public Result<Object> saveuser() {
 
+        Bd_customer c = new Bd_customer();
+        c.setEmpcode("ll215817");
 
-        boolean b = bd_customerService.save(new Bd_customer().setEmpcode("ll215817"));
+        boolean b = bd_customerService.save(c);
 
         if (b) {
             return RetResponse.makeOKRsp();
@@ -90,32 +98,52 @@ public class CustomerController {
     }
 
 
-    @PutMapping(value = "/sysdict")
-    public Result<Object> putsysdict(@RequestBody Bd_customer customer) {
+    @PutMapping(value = "/customer")
+    public Result<Object> customer(@RequestBody Bd_customer customer) {
 
-
+        customer.setId(null);
         return RetResponse.makeOKRsp(bd_customerService.save(customer));
 
 
     }
 
+    @PutMapping(value = "/education")
+    public Result<Object> education(@RequestBody BdCustomerEducation bdCustomerEducationmer) {
 
-    @PutMapping(value = "/customer")
-    public Result<Object> customer(@RequestBody @Valid CustomerVO vo, BindingResult bindingResult) {
+        bdCustomerEducationmer.setId(null);
 
-        if (bindingResult.hasErrors()) {
-
-            bindingResult.getAllErrors().forEach(e -> {
-
-                log.error(e.getDefaultMessage());
-
-            });
-
+        boolean b = false;
+        try {
+            b = educationService.save(bdCustomerEducationmer);
+        } catch (Exception e) {
+            log.error(e.getMessage());
         }
+        return RetResponse.makeOKRsp("出错了");
 
-        return RetResponse.makeOKRsp(vo);
 
     }
+
+
+//    @PutMapping(value = "/customer")
+//    public Result<Object> customer(@RequestBody @Valid CustomerVO vo, BindingResult bindingResult) {
+
+//        拿basemap的方法
+//        bd_customerService.getBaseMapper().test();
+
+
+//        if (bindingResult.hasErrors()) {
+//
+//            bindingResult.getAllErrors().forEach(e -> {
+//
+//                log.error(e.getDefaultMessage());
+//
+//            });
+//
+//        }
+//
+//        return RetResponse.makeOKRsp(vo);
+//
+//    }
 
 
 }

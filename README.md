@@ -7,6 +7,14 @@
 
 #### 19/09/29
 
+> Mycat ER 分片 [](#mycat1)
+
+
+
+
+
+<hr>
+
 > [SpringBoot 使用@RequestBody 接受不到参数的问题](https://blog.csdn.net/weixin_37603867/article/details/81298440)
 
 > [Spring Boot 参数校验](https://www.cnblogs.com/cjsblog/p/8946768.html)
@@ -18,8 +26,9 @@
 > Lombok 链式调用会导致BeanUtils方法失效
 
 
-#### 19/09/24
+#### 19/09/24 <a name="mycat1"></a>
 
+ 
 bd_customer做了水平拆分，关联表需要拆分吗？子表数据可能比主表还多
 
 > 启动mycat
