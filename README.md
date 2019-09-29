@@ -26,14 +26,14 @@
 
 
 
-分片视图查询
+> 分片视图查询
 ```html
 <table name="v_customer" dataNode="dn1,dn3" />
 ```
 
 
 
-定义全局表，编辑字典表会对所有的表生效
+> 定义全局表，编辑字典表会对所有的表生效
 
 ```html
 <table name="dict" primaryKey="id" dataNode="dn1,dn3" type="global" />
