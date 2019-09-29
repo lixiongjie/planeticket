@@ -3,20 +3,18 @@ package cus.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import comm.ret.Result;
 import comm.ret.RetResponse;
+import cus.entity.BdCustomer;
 import cus.entity.BdCustomerEducation;
-import cus.entity.Bd_customer;
 import cus.entity.SysDict;
 import cus.service.BdCustomerEducationServiceImpl;
 import cus.service.Bd_customerServiceImpl;
 import cus.service.SysDictServiceImpl;
-import cus.vo.CustomerVO;
+import cus.service.VCustomerServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import order.feign.OrderFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -39,11 +37,15 @@ public class CustomerController {
     BdCustomerEducationServiceImpl educationService;
 
 
+    @Autowired
+    VCustomerServiceImpl vCustomerService;
+
+
     @GetMapping(value = "/users")
     public Result<Object> query(@RequestParam(name = "username", required = false, defaultValue = "tom") String username) {
 
 
-        List list = bd_customerService.list(new QueryWrapper<Bd_customer>());
+        List list = bd_customerService.list(new QueryWrapper<BdCustomer>());
 
         return RetResponse.makeOKRsp(list);
 
@@ -54,7 +56,7 @@ public class CustomerController {
     @PutMapping(value = "/user")
     public Result<Object> saveuser() {
 
-        Bd_customer c = new Bd_customer();
+        BdCustomer c = new BdCustomer();
         c.setEmpcode("ll215817");
 
         boolean b = bd_customerService.save(c);
@@ -99,7 +101,7 @@ public class CustomerController {
 
 
     @PutMapping(value = "/customer")
-    public Result<Object> customer(@RequestBody Bd_customer customer) {
+    public Result<Object> customer(@RequestBody BdCustomer customer) {
 
         customer.setId(null);
         return RetResponse.makeOKRsp(bd_customerService.save(customer));
@@ -122,6 +124,17 @@ public class CustomerController {
 
 
     }
+
+
+
+    @GetMapping(value = "/allcustomer")
+    public Result<Object> allcustomer() {
+
+        return RetResponse.makeOKRsp(vCustomerService.list());
+
+    }
+
+
 
 
 //    @PutMapping(value = "/customer")

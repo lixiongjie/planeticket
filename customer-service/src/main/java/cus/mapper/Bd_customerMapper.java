@@ -1,7 +1,7 @@
 package cus.mapper;
 
-import cus.entity.Bd_customer;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import cus.entity.BdCustomer;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Select;
  * @author ur name
  * @since 2019-09-23
  */
-public interface Bd_customerMapper extends BaseMapper<Bd_customer> {
+public interface Bd_customerMapper extends BaseMapper<BdCustomer> {
 
 
 

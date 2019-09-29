@@ -50,6 +50,16 @@ public class CodeGenerator {
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
+
+
+
+//        dsc.setUrl("jdbc:mysql://10.211.55.6:3306/plane_security?useUnicode=true&characterEncoding=utf8");
+//        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
+//        dsc.setUsername("root");
+//        dsc.setPassword("qaz00WSX@");
+
+
+
         mpg.setDataSource(dsc);
 
 
@@ -60,7 +70,7 @@ public class CodeGenerator {
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
 
-        strategy.setInclude(new String[] { "bd_customer_education" }); // 需要生成的表
+        strategy.setInclude(new String[] { "v_customer" }); // 需要生成的表
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 自定义实体父类
         // strategy.setSuperEntityClass("com.baomidou.demo.TestEntity");

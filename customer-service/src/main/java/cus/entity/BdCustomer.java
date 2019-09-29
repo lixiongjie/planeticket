@@ -1,10 +1,8 @@
 package cus.entity;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
-import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
@@ -15,13 +13,13 @@ import java.io.Serializable;
  * </p>
  *
  * @author ur name
- * @since 2019-09-23
+ * @since 2019-09-29
  */
+
 @Data
-public class Bd_customer implements Serializable {
+public class BdCustomer implements Serializable {
 
     private static final long serialVersionUID=1L;
-
 
     @TableId(type = IdType.ID_WORKER_STR)
     private String id;
@@ -40,6 +38,7 @@ public class Bd_customer implements Serializable {
 
     private Integer deleted;
 
+    private Integer sex;
 
 
 }
