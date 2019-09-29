@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
 
 @SpringBootApplication
-@EnableFeignClients(basePackages = "me.x.employee.feign")
+//@EnableFeignClients(basePackages = "me.x.cus.feign")
 public class OrderApplication {
 
 	public static void main(String[] args) {

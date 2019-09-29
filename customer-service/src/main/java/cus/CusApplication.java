@@ -9,9 +9,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.converter.HttpMessageConverter;
 
 @SpringBootApplication
+@ComponentScan(value = {"comm","cus"})
 @MapperScan("cus.mapper")
 @EnableFeignClients(basePackages = "order.feign")
 public class CusApplication {

@@ -73,7 +73,12 @@ public class CustomerController {
 
     @GetMapping("/user/{id}")
     public Result<Object> testPathVariable(@PathVariable("id") Integer id) {
-        return RetResponse.makeOKRsp(id);
+//        return RetResponse.makeOKRsp(id);
+
+        Result r = salaryFeignClient.findById(Long.valueOf("1"));
+
+        return RetResponse.makeOKRsp(r);
+
     }
 
 //
@@ -114,12 +119,8 @@ public class CustomerController {
 
         bdCustomerEducationmer.setId(null);
 
-        boolean b = false;
-        try {
-            b = educationService.save(bdCustomerEducationmer);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        }
+        boolean b = educationService.save(bdCustomerEducationmer);;
+
         return RetResponse.makeOKRsp("出错了");
 
 
@@ -131,6 +132,16 @@ public class CustomerController {
     public Result<Object> allcustomer() {
 
         return RetResponse.makeOKRsp(vCustomerService.list());
+
+    }
+
+
+    @DeleteMapping(value = "/allcustomer")
+    public Result<Object> deleteallcustomer() {
+
+        boolean b =  bd_customerService.remove(new QueryWrapper<BdCustomer>());
+
+        return RetResponse.makeOKRsp(b);
 
     }
 

@@ -9,18 +9,19 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class OrderController {
 
-    @Autowired
-    private UserFeignClient userFeignClient;
+//    @Autowired
+//    private UserFeignClient userFeignClient;
 
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public Result<Object> query(@RequestParam(name = "username", required = false, defaultValue = "tom") String username) {
 
 
-        Result r = userFeignClient.findById(Long.valueOf("1"));
+//        Result r = userFeignClient.findById(Long.valueOf("1"));
 
+//        return RetResponse.makeOKRsp(r);
 
-        return RetResponse.makeOKRsp(r);
+        return null;
     }
 
 
