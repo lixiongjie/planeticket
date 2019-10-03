@@ -4,10 +4,31 @@
 
 
 
+#### 19/10/03
+
+[记录异常和返回值的解决方案](#mycat2)
+
+
+记录异常方式一：
+
++ 这种方式拿不到参数和返回值只能统一处理异常
++ 你也可以在自己的工程中使用自定义的异常切面，但是要调整和comm表中的顺序
+
+```java
+////通用包里有全局异常处理
+@ComponentScan(value = {"comm"
+//取消controller中的try catch，交由GlobalExceptionHandler去捕获
+```
+
+
+ControllerAspect方式二： 
+
+可以拿到请求参数和返回，但是需要区分是否文件上传请求
+
 
 #### 19/09/30
 
-> 如何记录异常和返回值？
+> 如何记录异常和返回值？<a name="mycat2"></a>
 
 [Spring Boot Controller 统一返回格式](https://www.jianshu.com/p/b4d67167e43c)
 

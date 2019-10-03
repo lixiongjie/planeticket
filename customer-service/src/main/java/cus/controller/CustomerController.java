@@ -118,14 +118,22 @@ public class CustomerController {
     public Result<Object> education(@RequestBody BdCustomerEducation bdCustomerEducationmer) {
 
         bdCustomerEducationmer.setId(null);
-
-        boolean b = educationService.save(bdCustomerEducationmer);;
+//        try {
+//            boolean b = educationService.save(bdCustomerEducationmer);
+//
+//        } catch (Exception ex) {
+//            //ex.printStackTrace();
+//            //log.error(ex.getMessage());
+//
+//            System.out.println("发生异常");
+//
+//        }
+        boolean b = educationService.save(bdCustomerEducationmer);
 
         return RetResponse.makeOKRsp("出错了");
 
 
     }
-
 
 
     @GetMapping(value = "/allcustomer")
@@ -139,13 +147,11 @@ public class CustomerController {
     @DeleteMapping(value = "/allcustomer")
     public Result<Object> deleteallcustomer() {
 
-        boolean b =  bd_customerService.remove(new QueryWrapper<BdCustomer>());
+        boolean b = bd_customerService.remove(new QueryWrapper<BdCustomer>());
 
         return RetResponse.makeOKRsp(b);
 
     }
-
-
 
 
 //    @PutMapping(value = "/customer")
