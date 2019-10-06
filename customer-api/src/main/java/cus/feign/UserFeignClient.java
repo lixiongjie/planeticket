@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
-@FeignClient(name = "microservice-provider-user",
-        url = "http://localhost:8080",
+@FeignClient(value = "customer-service",
+//        url = "http://localhost:8080",
         configuration = UserFeignConfig.class)
 public interface UserFeignClient {
 

@@ -41,6 +41,11 @@ public class CustomerController {
     VCustomerServiceImpl vCustomerService;
 
 
+    @RequestMapping("/")
+    public String home() {
+        return "Hello world";
+    }
+
     @GetMapping(value = "/users")
     public Result<Object> query(@RequestParam(name = "username", required = false, defaultValue = "tom") String username) {
 
@@ -69,6 +74,17 @@ public class CustomerController {
 
 
     }
+
+
+
+    @GetMapping("/users/{id}")
+    public Result<Object> users(@PathVariable("id") Integer id) {
+
+        return RetResponse.makeOKRsp("customer give u : "+id);
+
+    }
+
+
 
 
     @GetMapping("/user/{id}")

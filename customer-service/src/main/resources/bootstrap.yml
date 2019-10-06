@@ -14,6 +14,20 @@ spring:
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  application:
+    name: customer-service
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        healthCheckPath: /
+        healthCheckInterval: 5s
+        instance-id: ${spring.application.name}:${server.port} # 配置注册到consul 服务的id
+        enabled: true #启用 consul 服务发现
+        service-name: ${spring.application.name}
+        prefer-ip-address: true
+        query-passing: true
 
 mybatis-plus:
   mapper-locations: classpath:cus/mapper/xml/*.xml

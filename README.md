@@ -4,6 +4,70 @@
 
 
 
+
+#### 19/10/05
+
+> consule
+
+./consul agent -dev  
+
+
+[SpringCloud使用Consul](http://www.pianshen.com/article/1785195291/)
+
+[Spring Cloud中的Consul的相关配置](https://blog.csdn.net/zhaoruda/article/details/80206896)
+
+
++ 服务调用方也要配置，否则找不到服务
++ 一定要按照spring.io生成的pom配置在主pom中定义dependencyManagement，否则添加不了discovery依赖
+
+```xml
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+    </dependency>
+```
+
+
+
+
+
+#### 19/10/04
+
+>consule
+
+[consul单节点和集群使用配置](https://blog.csdn.net/xiang__liu/article/details/80878537)
+
+[SpringBoot 服务注册 (Consul)](https://blog.csdn.net/liuxiaoxiaosmile/article/details/82970870)
+
+[SpringCloud使用Consul作为分布式配置中心](https://blog.csdn.net/qq_36027670/article/details/79701775)
+
+[Spring Cloud Consul 实现服务注册和发现](https://www.cnblogs.com/scode2/p/8671223.html)
+
+[微服务Consul系列之服务部署、搭建、使用](https://www.imooc.com/article/275704)
+
+[Spring Cloud（二）Consul 服务治理实现](https://www.ymq.io/2017/11/26/spring-cloud-consul/)
+ 
+```html
+
+单节点：
+
+下载consul，并进行安装后，在/usr/local建立相应数据目录。
+执行如下命令，启动单节点：
+
+nohup consul  agent -server -data-dir=/usr/local/consul-data/  -node=agent-one -bind=0.0.0.0 -bootstrap-expect=1 -client=0.0.0.0 -ui > /usr/local/consul-data/logs/consul.lo
+g 2>&1 & 
+ 
+单节点扩容为集群：
+
+nohup consul agent -bind=0.0.0.0 -client=0.0.0.0 -data-dir=/usr/local/consul-data -node=agent-four -join=172.16.111.130 > /usr/local/consul-data/logs/consul.log 2>&1 &
+
+
+172.16.111.130为单节点IP。
+如果剔除单节点，只需要在相应被踢出的服务器上执行：consul leave
+等待24-72小时，集群节点会删除相关节点信息。 
+```
+
+
 #### 19/10/03
 
 

@@ -4,4 +4,18 @@ server:
 
 logging:
   level:
-    me.x.cus.feign.UserFeignClient: debug
+    cus.feign.UserFeignClient: debug
+
+
+spring:
+  cloud:
+    consul:
+      port: 8500 # consul 服务中心 访问端口
+      host: 127.0.0.1
+      enabled: true
+      prefer-ip-address: true
+      discovery:
+        # 关闭 服务注册 到 consul服务中心
+        register: false
+  application:
+    name: consul-client-hello
