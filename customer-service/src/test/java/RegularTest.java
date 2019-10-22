@@ -69,4 +69,34 @@ public class RegularTest {
 
     }
 
+
+    @Test
+    public void _3(){
+//
+//        a = public void aaa(String s){
+//            System.out.println("1");
+//        }
+
+        int i = 10;
+
+        MyLambdaInterface a = (s)->{
+
+            int x  = i+ Integer.valueOf(s);
+
+            //System.out.println(x);
+
+            return x;
+
+
+        } ;
+
+        a.doSomeShit("1");
+
+
+    }
+
+    interface MyLambdaInterface{
+        int doSomeShit(String s);
+    }
+
 }

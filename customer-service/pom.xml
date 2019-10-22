@@ -121,6 +121,30 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+
+            <!--输出-->
+            <plugin>
+                <groupId>org.codehaus.gmaven</groupId>
+                <artifactId>groovy-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <source>
+                                log.info('Test message: {}', 'Hello, World!');
+                                log.info('${project.artifactId}-${project.version}');
+                            </source>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+
         </plugins>
     </build>
 
