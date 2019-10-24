@@ -4,6 +4,41 @@
 
 
 
+
+#### 19/10/24
+
+如何制作jdk环境的容器 
+
+
+```text
+     
+1.启动容器,并在后台运行 
+ 
+docker run -itd centos:latest
+
+2.进入容器下载jdk
+docker exec -it 757 bash
+
+
+yum search java|grep jdk
+yum install java-1.8.0-openjdk.x86_64
+安装完成后推出容器 
+
+提交修改
+docker commit -a "lixiongjie" -m "add jdk8" 757 lixiongjie/centos:jdk8
+
+使用docker images查看建好的容器 
+
+
+```
+
+
+[修改Docker容器](https://www.jianshu.com/p/19c4098eefc8)
+[下载centos7标准镜像及安装mysql5.7](https://www.cnblogs.com/mswei/p/10365613.html)
+
+
+
+
 #### 19/10/23
 
 docker
