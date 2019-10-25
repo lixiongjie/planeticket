@@ -5,6 +5,27 @@
 
 
 
+
+
+#### 19-10/25
+
+
+
+```text
+docker pull mysql:5.5
+
+docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 d40
+
+
+docker run -p 3306:3306 -d -e MYSQL_ROOT_PASSWORD=123456 -v /Volumes/C/JAVA/mysqldb:/var/lib/mysql d40
+
+```
+
+[Mysql 重启数据没了](https://www.liangzl.com/get-article-detail-135476.html)
+
+
+
+
 #### 19/10/24
 
 如何制作jdk环境的容器 
@@ -24,10 +45,24 @@ yum search java|grep jdk
 yum install java-1.8.0-openjdk.x86_64
 安装完成后推出容器 
 
-提交修改
+3.提交修改
 docker commit -a "lixiongjie" -m "add jdk8" 757 lixiongjie/centos:jdk8
 
-使用docker images查看建好的容器 
+4.使用docker images查看建好的容器 
+
+5.基于dockerfile构建本地镜像 
+docker build -t cus .
+
+
+
+docker run 之后用docker ps可能什么都看不到：
+1.docker ps -a 查到容器id
+2.docker logs 1eae367f54c6
+3.docker build -t cus:1 --build-arg JAR_FILE=/target/customer-service-0.1.jar  .
+
+
+
+
 
 
 ```
@@ -35,7 +70,7 @@ docker commit -a "lixiongjie" -m "add jdk8" 757 lixiongjie/centos:jdk8
 
 [修改Docker容器](https://www.jianshu.com/p/19c4098eefc8)
 [下载centos7标准镜像及安装mysql5.7](https://www.cnblogs.com/mswei/p/10365613.html)
-
+[Docker镜像的获取与使用](https://blog.csdn.net/smile_bestsun/article/details/53786070)
 
 
 
