@@ -9,11 +9,19 @@
 #### 19/10/26
 
 
+
+
+
 docker启动需要绑定端口，否则无法访问
  
 docker run -p 8888:8080 -itd cus:1
 
 
+
+
+>  查看linux版本 
+
+cat /etc/os-release
 
 
 

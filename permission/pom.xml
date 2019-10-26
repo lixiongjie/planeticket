@@ -9,14 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>order-service</artifactId>
-
-
+    <artifactId>permission</artifactId>
 
 
     <dependencies>
-
-
 
 
         <dependency>
@@ -26,38 +22,7 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>me.x</groupId>
-            <artifactId>customer-api</artifactId>
-            <version>0.1</version>
-        </dependency>
-
-
-
-
-
-
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
-        </dependency>
-
-
-
-
     </dependencies>
-
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
 
 
 </project>
