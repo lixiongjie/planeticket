@@ -6,10 +6,21 @@
 
 
 
+#### 19/10/26
+
+
+docker启动需要绑定端口，否则无法访问
+ 
+docker run -p 8888:8080 -itd cus:1
+
+
+
+
 
 #### 19-10/25
 
 
+安装mysql
 
 ```text
 docker pull mysql:5.5

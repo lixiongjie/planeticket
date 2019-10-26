@@ -8,4 +8,4 @@ COPY ${JAR_FILE} /opt/app.jar
 WORKDIR /opt
 ENTRYPOINT [ "sh", "-c", "java -jar app.jar" ]
 # 使用端口80
-EXPOSE 8500
+EXPOSE 8080
