@@ -1,5 +1,6 @@
 import bean.Stu;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import com.google.common.base.Preconditions;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -16,6 +17,21 @@ import static junit.framework.Assert.assertNotNull;
  */
 @Slf4j
 public class RegularTest {
+
+
+    @Test
+    public void _22(){
+
+
+        Preconditions.checkNotNull(null, "待删除的部门不存在，无法删除");
+
+
+
+    }
+
+
+
+
 
     @Test
     public void evaluatesExpression() {

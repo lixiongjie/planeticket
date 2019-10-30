@@ -1,4 +1,4 @@
-package dto;
+package per.dto;
 
 import com.google.common.collect.Lists;
 import lombok.Getter;

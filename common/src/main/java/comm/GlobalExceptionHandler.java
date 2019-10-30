@@ -14,7 +14,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     public Result exceptionHandler(Exception e) {
 
-        log.error("global exception : "+e.getMessage());
+        log.error("global per.exception : "+e.getMessage());
         return RetResponse.makeOKRsp(e.getMessage());
 
     }

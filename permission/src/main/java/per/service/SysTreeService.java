@@ -3,27 +3,23 @@ package per.service;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
-import dto.DeptLevelDto;
+import per.dto.DeptLevelDto;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import per.entity.SysDept;
 import per.utils.LevelUtil;
 
-import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class SysTreeService {
 
 
     @Autowired
-    SysDeptServiceImpl sysDeptService ;
+    SysDeptService sysDeptService ;
 
 
     public List<DeptLevelDto> deptTree() {
@@ -92,6 +88,9 @@ public class SysTreeService {
             return o1.getSeq() - o2.getSeq();
         }
     };
+
+
+
 
 
 

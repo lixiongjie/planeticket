@@ -19,6 +19,8 @@ public class DeptParam {
     @Length(max = 15, min = 2, message = "部门名称长度需要在2-15个字之间")
     private String name;
 
+
+    //非常总要 ->
     private Integer parentId = 0;
 
     @NotNull(message = "展示顺序不可以为空")

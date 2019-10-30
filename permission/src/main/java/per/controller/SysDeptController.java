@@ -3,23 +3,22 @@ package per.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import comm.ret.Result;
 import comm.ret.RetResponse;
-import dto.DeptLevelDto;
+import per.dto.DeptLevelDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import per.entity.SysDept;
 import per.param.DeptParam;
-import per.service.SysDeptServiceImpl;
+import per.service.SysDeptService;
 import per.service.SysTreeService;
 import per.utils.LevelUtil;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,7 +35,7 @@ public class SysDeptController {
 
 
     @Autowired
-    SysDeptServiceImpl sysDeptService;
+    SysDeptService sysDeptService;
 
 
     @Autowired
@@ -48,7 +47,7 @@ public class SysDeptController {
 
 
         sysDeptService.getBaseMapper().selectCount(new QueryWrapper<SysDept>()
-                .eq("parentId", param.getParentId())
+                .eq("parent_id", param.getParentId())
                 .eq("name", param.getName())
         );
 
@@ -57,6 +56,9 @@ public class SysDeptController {
         BeanUtils.copyProperties(param,dept);
 
         dept.setLevel(LevelUtil.calculateLevel(getLevel(param.getParentId()),param.getParentId()) );
+
+
+        dept.setOperateTime(LocalDateTime.now());
 
         return RetResponse.makeOKRsp(sysDeptService.save(dept));
 
@@ -86,6 +88,18 @@ public class SysDeptController {
 
 
     }
+
+
+
+
+
+
+    @GetMapping(value = "/update.json")
+    public Result<Object> updateDept(DeptParam param) {
+        sysDeptService.update(param);
+        return RetResponse.makeOKRsp();
+    }
+
 
 
 
