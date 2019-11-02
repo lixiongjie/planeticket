@@ -6,6 +6,24 @@
 
 
 
+#### 19/11/02
+
+> @Async 
+
+异步注解：异步之前保存数据，再调用异步service的话很可能查不到保存的数据；
+如切面中完成业务方法后调用异步service做同步，业务方法很可能没结束，导致新开的线程做查询的时候查不到数据；
+
+
+[@Async注解导致循环依赖](https://blog.csdn.net/w15868676598/article/details/100139058)
+
+> 关于hashcode的用法
+
+tostring 重写tostring讲需要的字段放进去 -> tostring后在计算hashcode
+
+
+主要是用来判断两个对象是否相同，存id和hashcode，一旦发现id的hashcode变更，则需要更新本地值为最新的值 
+
+
 #### 19/10/26
 
 
