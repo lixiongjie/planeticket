@@ -8,6 +8,17 @@
 
 #### 19/11/02
 
+
+
+> mapper.xml & yml 文件未打包
+
+[mapper文件未打包](https://www.cnblogs.com/oyx305/p/5340683.html)
+
+[Springboot 项目pom.xml 配置文件以及启动类的一些配置](https://www.cnblogs.com/zhang-bo/p/8440745.html)
+
+> Model 中的integer类型记得要初始化，避免报nullpoint
+
+
 > @Async 
 
 异步注解：异步之前保存数据，再调用异步service的话很可能查不到保存的数据；

@@ -4,15 +4,18 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.base.Preconditions;
+import org.springframework.beans.BeanUtils;
+import org.springframework.util.Assert;
 import per.exception.ParamException;
 import org.apache.commons.collections.CollectionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import per.entity.SysDept;
 import per.mapper.SysDeptMapper;
 import per.param.DeptParam;
 import per.utils.LevelUtil;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -28,12 +31,17 @@ public class SysDeptService extends ServiceImpl<SysDeptMapper, SysDept> implemen
 
 
 
+    public final static String sdsxtmc = "同一层级下存在相同名称的部门";
+
+
 
     public void update(DeptParam param) {
 
-        if(checkExist(param.getParentId(), param.getName(), param.getId())) {
-            throw new ParamException("同一层级下存在相同名称的部门");
-        }
+
+        Assert.state(getBaseMapper().countByNameAndParentId(param.getParentId(), param.getName(), param.getId()) < 1,
+                sdsxtmc);
+
+
         SysDept before = this.getById(param.getId());
         Preconditions.checkNotNull(before, "待更新的部门不存在");
         if(checkExist(param.getParentId(), param.getName(), param.getId())) {
@@ -88,20 +96,8 @@ public class SysDeptService extends ServiceImpl<SysDeptMapper, SysDept> implemen
 
 
 
-    private boolean checkExist(Integer parentId, String deptName, Integer deptId) {
-
-
-        QueryWrapper qw = new QueryWrapper<SysDept>()
-                .eq("parent_id",parentId)
-                .eq("name",deptName);
-
-        if(deptId!=null) {
-            qw.ne("id", deptId);
-        }
-
-
-        return this.count(qw)>0;
-
+    public boolean checkExist(Integer parentId, String deptName, Integer deptId) {
+        return getBaseMapper().countByNameAndParentId(parentId, deptName, deptId) > 0;
     }
 
     private String getLevel(Integer deptId) {
@@ -113,5 +109,22 @@ public class SysDeptService extends ServiceImpl<SysDeptMapper, SysDept> implemen
     }
 
 
+    public boolean saveDept(DeptParam param) {
 
+        Assert.state(getBaseMapper().countByNameAndParentId(param.getParentId(), param.getName(), param.getId()) < 1,
+                sdsxtmc);
+
+
+        SysDept dept = new SysDept();
+        BeanUtils.copyProperties(param,dept);
+
+
+        dept.setLevel(LevelUtil.calculateLevel(getLevel(param.getParentId()),param.getParentId()) );
+
+        dept.setOperateTime(LocalDateTime.now());
+
+        return save(dept);
+
+
+    }
 }

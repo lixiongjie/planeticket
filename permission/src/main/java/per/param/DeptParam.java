@@ -20,7 +20,7 @@ public class DeptParam {
     private String name;
 
 
-    //非常总要 ->
+    //非常总要 -> 附默认值
     private Integer parentId = 0;
 
     @NotNull(message = "展示顺序不可以为空")

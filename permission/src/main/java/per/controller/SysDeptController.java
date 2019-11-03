@@ -3,6 +3,7 @@ package per.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import comm.ret.Result;
 import comm.ret.RetResponse;
+import org.springframework.util.Assert;
 import per.dto.DeptLevelDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -43,41 +44,11 @@ public class SysDeptController {
 
 
     @GetMapping(value = "/save.json")
-    public Result<Object> saveDept(@Valid DeptParam param) {
+    public Result<Object> saveDept(@Valid DeptParam param) throws Exception {
 
-
-        sysDeptService.getBaseMapper().selectCount(new QueryWrapper<SysDept>()
-                .eq("parent_id", param.getParentId())
-                .eq("name", param.getName())
-        );
-
-
-        SysDept dept = new SysDept();
-        BeanUtils.copyProperties(param,dept);
-
-        dept.setLevel(LevelUtil.calculateLevel(getLevel(param.getParentId()),param.getParentId()) );
-
-
-        dept.setOperateTime(LocalDateTime.now());
-
-        return RetResponse.makeOKRsp(sysDeptService.save(dept));
+        return RetResponse.makeOKRsp(sysDeptService.saveDept(param));
 
     }
-
-
-    private String getLevel(Integer deptId){
-
-        SysDept dept = sysDeptService.getById(deptId);
-
-        if(dept == null){
-            return null;
-        }
-
-        return dept.getLevel();
-
-    }
-
-
 
 
 
