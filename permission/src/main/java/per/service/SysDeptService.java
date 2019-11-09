@@ -38,7 +38,7 @@ public class SysDeptService extends ServiceImpl<SysDeptMapper, SysDept> implemen
     public void update(DeptParam param) {
 
 
-        Assert.state(getBaseMapper().countByNameAndParentId(param.getParentId(), param.getName(), param.getId()) < 1,
+        Assert.state(this.baseMapper.countByNameAndParentId(param.getParentId(), param.getName(), param.getId()) < 1,
                 sdsxtmc);
 
 
@@ -97,7 +97,7 @@ public class SysDeptService extends ServiceImpl<SysDeptMapper, SysDept> implemen
 
 
     public boolean checkExist(Integer parentId, String deptName, Integer deptId) {
-        return getBaseMapper().countByNameAndParentId(parentId, deptName, deptId) > 0;
+        return this.baseMapper.countByNameAndParentId(parentId, deptName, deptId) > 0;
     }
 
     private String getLevel(Integer deptId) {
@@ -111,7 +111,7 @@ public class SysDeptService extends ServiceImpl<SysDeptMapper, SysDept> implemen
 
     public boolean saveDept(DeptParam param) {
 
-        Assert.state(getBaseMapper().countByNameAndParentId(param.getParentId(), param.getName(), param.getId()) < 1,
+        Assert.state(this.baseMapper.countByNameAndParentId(param.getParentId(), param.getName(), param.getId()) < 1,
                 sdsxtmc);
 
 
