@@ -1,9 +1,11 @@
 package per.mapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.apache.ibatis.annotations.Param;
 import per.entity.SysUser;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SysUserMapper {
     int deleteByPrimaryKey(Integer id);
@@ -26,7 +28,7 @@ public interface SysUserMapper {
 
     int countByDeptId(@Param("deptId") int deptId);
 
-//    List<SysUser> getPageByDeptId(@Param("deptId") int deptId, @Param("page") PageQuery page);
+    IPage<Map> getPageByDeptId(IPage page , @Param("deptId") int deptId);
 
     List<SysUser> getByIdList(@Param("idList") List<Integer> idList);
 

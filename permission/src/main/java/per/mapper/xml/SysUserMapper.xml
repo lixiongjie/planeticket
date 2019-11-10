@@ -198,7 +198,8 @@
     FROM sys_user
     WHERE dept_id = #{deptId}
     ORDER BY username ASC
-    LIMIT #{page.offset}, #{page.pageSize}
+
+
   </select>
 
   <select id="getByIdList" parameterType="map" resultMap="BaseResultMap">

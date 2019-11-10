@@ -63,4 +63,17 @@ public class UserController {
         String path = "signin.jsp";
         request.getRequestDispatcher(path).forward(request, response);
     }
+
+
+    @RequestMapping("/test.page")
+    public void test(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+
+        sysUserService.getPageByDeptId(1);
+
+
+    }
+
+
+
 }

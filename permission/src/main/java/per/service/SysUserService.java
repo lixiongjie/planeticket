@@ -1,5 +1,7 @@
 package per.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.base.Preconditions;
 import org.springframework.stereotype.Service;
 import per.entity.SysUser;
@@ -14,6 +16,7 @@ import per.utils.PasswordUtil;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SysUserService {
@@ -68,15 +71,21 @@ public class SysUserService {
         return sysUserMapper.findByKeyword(keyword);
     }
 
-//    public PageResult<SysUser> getPageByDeptId(int deptId, PageQuery page) {
+    public void getPageByDeptId(int deptId) {
 //        BeanValidator.check(page);
+
+        IPage pg = new Page();
+        pg.setCurrent(1);
+        pg.setSize(10000);
+
 //        int count = sysUserMapper.countByDeptId(deptId);
-//        if (count > 0) {
-//            List<SysUser> list = sysUserMapper.getPageByDeptId(deptId, page);
+
+        IPage<Map> list = sysUserMapper.getPageByDeptId(pg, deptId);
+        System.out.println(list);
 //            return PageResult.<SysUser>builder().total(count).data(list).build();
-//        }
 //        return PageResult.<SysUser>builder().build();
-//    }
+    }
+
 
     public List<SysUser> getAll() {
         return sysUserMapper.getAll();
