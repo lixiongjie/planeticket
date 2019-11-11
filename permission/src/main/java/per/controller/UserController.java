@@ -1,8 +1,11 @@
 package per.controller;
 
+import comm.ret.Result;
+import comm.ret.RetResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import per.entity.SysUser;
 import per.service.SysUserService;
 import per.utils.MD5Util;
@@ -13,21 +16,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Controller
+@RestController
 public class UserController {
 
     @Resource
     private SysUserService sysUserService;
 
     @RequestMapping("/logout.page")
-    public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public Result<Object> logout(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.getSession().invalidate();
         String path = "signin.jsp";
-        response.sendRedirect(path);
+
+        return RetResponse.makeOKRsp();
     }
 
     @RequestMapping("/login.page")
-    public void login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public Result<Object> login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -47,21 +51,21 @@ public class UserController {
             errorMsg = "用户已被冻结，请联系管理员";
         } else {
             // login success
-            request.getSession().setAttribute("user", sysUser);
-            if (StringUtils.isNotBlank(ret)) {
-                response.sendRedirect(ret);
-            } else {
-                response.sendRedirect("/admin/index.page"); //TODO
-            }
+//            request.getSession().setAttribute("user", sysUser);
+//            if (StringUtils.isNotBlank(ret)) {
+//                response.sendRedirect(ret);
+//            } else {
+//                response.sendRedirect("/admin/index.page"); //TODO
+//            }
+
+            errorMsg = "登陆成功！";
+
         }
 
-        request.setAttribute("error", errorMsg);
-        request.setAttribute("username", username);
-        if (StringUtils.isNotBlank(ret)) {
-            request.setAttribute("ret", ret);
-        }
-        String path = "signin.jsp";
-        request.getRequestDispatcher(path).forward(request, response);
+
+
+        return RetResponse.makeOKRsp(errorMsg);
+
     }
 
 
