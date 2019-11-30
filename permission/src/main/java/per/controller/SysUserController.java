@@ -1,19 +1,18 @@
 package per.controller;
 
-import com.google.common.collect.Maps;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import comm.ret.Result;
 import comm.ret.RetResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import per.param.SysUserPage;
 import per.param.UserParam;
 import per.service.SysTreeService;
 import per.service.SysUserService;
 
 import javax.annotation.Resource;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/sys/user")
@@ -45,5 +44,27 @@ public class SysUserController {
 
 
 
+    @RequestMapping("/page.json")
+    @ResponseBody
+    public Result<Object> page(SysUserPage param) {
+
+        IPage pg = sysUserService.getPageByDeptId(param);
+
+        return RetResponse.makeOKRsp(pg);
+
+
+    }
+
+
+
+
+
+
 
 }
+
+
+
+
+
+

@@ -7,14 +7,13 @@ import org.springframework.stereotype.Service;
 import per.entity.SysUser;
 import per.exception.ParamException;
 import per.mapper.SysUserMapper;
+import per.param.SysUserPage;
 import per.param.UserParam;
 import per.utils.BeanValidator;
-import per.utils.IpUtil;
 import per.utils.MD5Util;
 import per.utils.PasswordUtil;
 
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -85,6 +84,20 @@ public class SysUserService {
 //            return PageResult.<SysUser>builder().total(count).data(list).build();
 //        return PageResult.<SysUser>builder().build();
     }
+
+
+    public IPage<Map> getPageByDeptId(SysUserPage sysUserPage) {
+
+        IPage pg = new Page();
+        pg.setCurrent(sysUserPage.getPageNo());
+        pg.setSize(sysUserPage.getPageSize());
+
+
+        IPage<Map> list = sysUserMapper.getPageByDeptId(pg, sysUserPage.getDeptid());
+
+        return list;
+    }
+
 
 
     public List<SysUser> getAll() {
