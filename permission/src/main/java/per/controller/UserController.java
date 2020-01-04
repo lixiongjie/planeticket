@@ -81,12 +81,12 @@ public class UserController {
 
 
 
-    @RequestMapping("/importEmployee.page")
+    @RequestMapping("/atomicadd.page")
     public Result<Object> test(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 
 
-        asyncService.importEmployee();
+        asyncService.atomicadd();
 
 
         return RetResponse.makeOKRsp();
