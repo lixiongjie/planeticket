@@ -3,10 +3,12 @@ package per.controller;
 import comm.ret.Result;
 import comm.ret.RetResponse;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import per.entity.SysUser;
+import per.service.AsyncService;
 import per.service.SysUserService;
 import per.utils.MD5Util;
 
@@ -18,6 +20,10 @@ import java.io.IOException;
 
 @RestController
 public class UserController {
+
+    @Autowired
+    AsyncService asyncService;
+
 
     @Resource
     private SysUserService sysUserService;
@@ -75,11 +81,16 @@ public class UserController {
 
 
 
-    @RequestMapping("/test.page")
-    public void test(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    @RequestMapping("/importEmployee.page")
+    public Result<Object> test(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 
-        sysUserService.getPageByDeptId(1);
+
+        asyncService.importEmployee();
+
+
+        return RetResponse.makeOKRsp();
+
 
 
     }
